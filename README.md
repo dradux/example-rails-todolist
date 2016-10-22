@@ -25,7 +25,12 @@ This is an example rails app with docker+kubernetes+freelunchci. Please note tha
 * go to: http://localhost:3000/
 
 
+## FLCI Testing
+* if you would like to change something in the app to cause a flci build you can update the apps version (config/environment.rb > APP_VERSION).
+
+
 ## Tests
+* nyi
 
 
 ## Developer
