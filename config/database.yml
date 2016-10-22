@@ -1,23 +1,12 @@
-default: &default
+development: &default
   adapter: postgresql
   encoding: unicode
+  database: postgres
   pool: 5
-  username: weston
+  username: postgres
   password:
-  host: 127.0.0.1
-
-development:
-  <<: *default
-  database: todolist_development
+  host: db
 
 test:
   <<: *default
-  database: todolist_test
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  host: <%= ENV['PGSQL_PORT_5432_TCP_ADDR'] %> 
-  username: docker
-  password: docker
+  database: myapp_test

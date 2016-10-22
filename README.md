@@ -18,6 +18,7 @@ This is an example rails app with docker+kubernetes+freelunchci. Please note tha
 
 ## Run
 * `docker-compose up`
+* initialize the database: `docker-compose run web rake db:migrate`
 
 
 ## View
