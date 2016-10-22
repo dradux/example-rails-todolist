@@ -1,0 +1,44 @@
+---
+
+builds:
+  docker_image_name: dradux/example-rails-todolist
+
+services:
+  #https://hub.docker.com/_/postgres/
+  db:
+    image: postgres:9.5
+  #https://hub.docker.com/_/redis/
+  redis:
+    image: redis:3.2-alpine
+    command: redis-server --appendonly yes
+
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  ports:
+    - "3000:3000"
+
+links:
+  - db
+  - redis
+volumes:
+  - .:/app
+
+outputs:
+
+  - type: ecr
+    image: dradux/example-rails-todolist
+    registry: 703587889398.dkr.ecr.us-east-1.amazonaws.com
+    repository: example-rails-todolist
+
+#  - type: kube
+#    server: https://50.16.94.175
+#    user: aws_kubernetes
+#    #token: this value is stored/retrieved from the "secure store"
+#    #client_certificate: this value is stored/retrieved from the "secure store"
+#
+#    kube_selector: app=example-mean
+#    kube_deploy_registry: 703587889398.dkr.ecr.us-east-1.amazonaws.com   # this should match the registry you deploy your image to (e.g. ecr.registry)
+#    kube_deploy_repository: example-mean   # this should match the repository within the registry that you deploy your image to (e.g. ecr.repository)
+#    kube_rc_path: k8s/example-mean-rc.yml
+#    kube_dir: k8s
