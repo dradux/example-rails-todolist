@@ -3,7 +3,7 @@
 #
 
 # https://hub.docker.com/_/ruby/
-FROM ruby:2.2.0
+FROM ruby:2.2
 MAINTAINER drad "drader@adercon.com"
 
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
