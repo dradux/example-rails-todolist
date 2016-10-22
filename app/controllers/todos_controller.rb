@@ -24,6 +24,7 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
+    Rails.logger.debug '### todo_params: ' + todo_params.to_yaml
     @todo = Todo.new(todo_params)
 
     respond_to do |format|

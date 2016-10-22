@@ -1,4 +1,8 @@
 class Todo < ActiveRecord::Base
+
+    validates :name, presence: true
+
+    #callbacks
     after_save :create_cache_record
 
     private

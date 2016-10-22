@@ -34,7 +34,7 @@ This app is dockerized and will be kubernetized and freelunchized ;-)
 
 
 ## Tests
-* nyi
+* `docker-compose run -e "RAILS_ENV=test" web rails test test/models/todo_test.rb`
 
 
 ## Developer
