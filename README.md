@@ -34,7 +34,7 @@ This app is dockerized and will be kubernetized and freelunchized ;-)
 
 
 ## FLCI Testing
-* if you would like to change something in the app to cause a flci build you can update the apps version (config/environment.rb > APP_VERSION).
+* if you would like to change something in the app to cause a flci build you can update the app's version (config/environment.rb > APP_VERSION).
 
 
 ## Tests
