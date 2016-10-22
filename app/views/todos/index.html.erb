@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>&nbsp;</th>
-      <th>Name</th>
+      <th><span title="this info comes from the db">Name</span></th>
+      <th><span title="this info comes from redis">Created</span></th>
       <th colspan="3">action</th>
     </tr>
   </thead>
@@ -12,16 +13,42 @@
   <tbody>
     <% @todos.each do |todo| %>
       <tr>
-        <td>-</td>
-        <td><%= todo.name %></td>
-        <td style="padding-left: 33px;"><%= link_to 'show', todo %></td>
-        <td><%= link_to 'edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="border-right: none;"><%= todo.id %>. </td>
+        <td style="border-left: none;"><%= todo.name %></td>
+        <td><%= $redis.get('todo_' + todo.id.to_s) %></td>
+        <td style="padding-left: 13px; border-right: none;"><%= link_to 'show', todo %></td>
+        <td style="border-left: none; border-right: none;"><%= link_to 'edit', edit_todo_path(todo) %></td>
+        <td style="border-left: none;"><%= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Todo', new_todo_path %>
+
+<br />
+<h3>Notice</h3>
+<ul>
+    <li>the data in the <i>Name</i> column comes from the database; click the 'New Todo' link to add more items or use the 'edit' link next to an existing Todo to edit</li>
+    <li>the data in the <i>Created</i> column is generated via an 'after_save' callback by getting the current date/time and adding this info into the cache with a key of 'todo_' + todo.id.to_s</li>
+    <li>feel free to check the database to ensure there is not a 'created' column or, if you like, update one of your todos cache records
+        <ul>
+            <li>get a rails console: <pre><code>docker-compose run web rails console</code></pre></li>
+            <li>show all of your keys:
+<pre><code>$redis.scan_each() do |resume_key_name|
+    Rails.logger.debug resume_key_name.to_s
+end
+# todo_1
+# todo_2
+# todo_3</code></pre>
+            </li>
+            <li>update a key:<pre><code>$redis.set('todo_1','#updated manually##')</code></pre></li>
+            <li>now reload the webapp and you'll see the Created value in the row for todo_1 shows "#updated manually##"</li>
+        </ul>
+    </li>
+</ul>
+
+
+

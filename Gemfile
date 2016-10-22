@@ -9,6 +9,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'sidekiq'
+gem 'redis', '~> 3.3'
 
 gem 'unicorn'

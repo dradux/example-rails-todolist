@@ -1,3 +1,25 @@
 // Place all the styles related to the Todos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  background-color: #E5E5E5;
+  color: #4D4D4D;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 11px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+tr,td {
+  background-color: #E5E5E5;
+  color: #4D4D4D;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 11px;
+  border: 1px solid #BFBFBF;
+  padding: 3px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}

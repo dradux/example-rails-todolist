@@ -30,3 +30,4 @@ This is an example rails app with docker+kubernetes+freelunchci. Please note tha
 
 ## Developer
 * any changes to the Gemfile or the Dockerfile necessitate a `docker-compose build`
+* get a rails console: `docker-compose run web rails console`
